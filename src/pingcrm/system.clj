@@ -9,7 +9,7 @@
   (router/routes db))
 
 (def config
-  {:server/jetty {:handler (ig/ref :pingcrm/app) :port 3000}
+  {:server/jetty {:handler (ig/ref :pingcrm/app) :port (or (System/getenv "PORT") 3000)}
    :pingcrm/app {:db (ig/ref :database.sql/connection)}
    :database.sql/connection {:dbtype "sqlite" :dbname "resources/database/database.sqlite"}})
 
